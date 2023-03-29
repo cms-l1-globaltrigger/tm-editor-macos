@@ -1,0 +1,23 @@
+name: MacOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build app
+        run: bash build.sh
+      - name: Create dmg
+        run: |
+          mkdir tmp
+          mv dist/tm-editor.app tmp/.
+          hdiutil create tmp.dmg -ov -volname "tm-editor" -fs HFS+ -srcfolder "tmp/"
+          hdiutil convert tmp.dmg -format UDZO -o tm-editor.dmg
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: tm-editor
+          path: tm-editor.dmg
