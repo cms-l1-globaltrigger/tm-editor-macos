@@ -1,5 +1,5 @@
 wheel
-pyinstaller==5.13.2
-Markdown==3.4.4
-packaging==21.3
-PyQt5==5.15.9
+pyinstaller==6.4.0
+Markdown==3.5.2
+packaging==23.2
+PyQt5==5.15.10
